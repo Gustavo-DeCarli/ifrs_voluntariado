@@ -9,7 +9,7 @@ Este projeto é uma plataforma para gerenciar e conectar voluntários a ações 
 ### Backend
 - **Node.js:** Ambiente de execução.
 - **Express:** Framework web para o backend.
-- **PostgreSQL:** Banco de dados relacional.
+- **MYSQL:** Banco de dados relacional.
 - **JWT (JSON Web Token):** Autenticação segura.
 - **Swagger (OpenAPI):** Documentação da API.
 
