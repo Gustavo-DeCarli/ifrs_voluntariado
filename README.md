@@ -103,3 +103,43 @@
         <div class="tech-list">
             <div class="tech-category">
                 <h3>Backend</h3>
+                <ul>
+                    <li><strong>Node.js:</strong> Ambiente de execução.</li>
+                    <li><strong>Express:</strong> Framework web para o backend.</li>
+                    <li><strong>PostgreSQL:</strong> Banco de dados relacional.</li>
+                    <li><strong>JWT (JSON Web Token):</strong> Autenticação segura.</li>
+                    <li><strong>Swagger (OpenAPI):</strong> Documentação da API.</li>
+                </ul>
+            </div>
+            <div class="tech-category">
+                <h3>Frontend</h3>
+                <ul>
+                    <li><strong>React:</strong> Biblioteca JavaScript para a interface de usuário.</li>
+                    <li><strong>Vite:</strong> Ferramenta de build para o desenvolvimento rápido.</li>
+                    <li><strong>React Router:</strong> Gerenciamento de rotas.</li>
+                    <li><strong>Axios:</strong> Cliente HTTP para comunicação com a API.</li>
+                    <li><strong>ESLint & Prettier:</strong> Padrões de código e formatação.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Instalação e Execução</h2>
+        <div class="code-section">
+            <h3>Backend</h3>
+            <pre><code>cd backend
+npm install
+npm run dev</code></pre>
+        </div>
+
+        <div class="code-section">
+            <h3>Frontend</h3>
+            <pre><code>cd frontend
+npm install
+npm run dev</code></pre>
+        </div>
+    </div>
+
+</body>
+</html>
