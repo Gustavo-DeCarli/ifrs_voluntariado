@@ -25,4 +25,8 @@ CREATE TABLE IF NOT EXISTS events (
 
 INSERT INTO events (id, nome, data) VALUES
 (null, 'Passeata 7 de setembro', '2025-10-05'),
-(null, 'Corrida de cariola', '2025-12-15');
+(null, 'Corrida de cariola', '2025-12-15'),
+(null, 'Passeata de Cachorros', '2025-11-11'),
+(null, 'Circo de Palhaços', '2026-01-29'),
+(null, 'Corrida de Hotwaheels', '2025-12-22'),
+(null, 'Corrida de Natal', '2025-12-24');

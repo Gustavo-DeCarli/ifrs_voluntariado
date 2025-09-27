@@ -1,12 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AuthProvider } from "./auth/AuthContext";
-import RequireAuth from "./auth/RequireAuth";
-import RequireRole from "./auth/RequireRole";
-import RootLayout from "./layouts/RootLayout";
-import Login from "./pages/Login";
-import Forbidden from "./pages/Forbidden";
-import Eventos from "./pages/Eventos";
-import Admin from "./pages/Admin";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AuthProvider } from './auth/AuthContext'
+import RequireAuth from './auth/RequireAuth'
+import RequireRole from './auth/RequireRole'
+import RootLayout from './layouts/RootLayout'
+import Login from './pages/Login'
+import Forbidden from './pages/Forbidden'
+import Eventos from './pages/Eventos'
+import Admin from './pages/Admin'
+import Dashboard from './pages/Dashboard'
 
 function NotFound() {
   return (
@@ -14,21 +15,31 @@ function NotFound() {
       <h1>404 — Página não encontrada</h1>
       <p>Verifique a URL ou volte para a Home.</p>
     </main>
-  );
+  )
 }
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Login /> },
-      { path: "login", element: <Login /> },
-      { path: "forbidden", element: <Forbidden /> },
-      { path: "events", element: <Eventos /> },
       {
-        path: "Admin",
+        path: 'dashboard',
+        element: (
+          <RequireAuth>
+            <RequireRole allowedRoles={['admin', 'user']}>
+              <Dashboard />
+            </RequireRole>
+          </RequireAuth>
+        ),
+      },
+      { path: 'login', element: <Login /> },
+      { path: 'forbidden', element: <Forbidden /> },
+      { path: 'events', element: <Eventos /> },
+      {
+        path: 'Admin',
         element: (
           <RequireAuth>
             <RequireRole role="admin">
@@ -37,15 +48,15 @@ const router = createBrowserRouter([
           </RequireAuth>
         ),
       },
-      { path: "*", element: <NotFound /> },
+      { path: '*', element: <NotFound /> },
     ],
   },
-]);
+])
 
 export default function App() {
   return (
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
-  );
+  )
 }

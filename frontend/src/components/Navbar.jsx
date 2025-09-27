@@ -1,13 +1,17 @@
-
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import { NavLink } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth()
   return (
     <header className="navbar">
       <nav className="navbar-inner">
         {}
         <ul className="nav-links">
+          {user && (
+            <li>
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+          )}
           {user && (
             <li>
               <NavLink to="/events">Eventos</NavLink>
@@ -20,7 +24,7 @@ export default function Navbar() {
           )}
           {user && (
             <>
-              {user.role === "admin" && (
+              {user.role === 'admin' && (
                 <li>
                   <NavLink to="/admin">Admin</NavLink>
                 </li>
@@ -35,5 +39,5 @@ export default function Navbar() {
         </ul>
       </nav>
     </header>
-  );
+  )
 }

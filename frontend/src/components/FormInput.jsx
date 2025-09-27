@@ -1,6 +1,6 @@
 export default function FormInput({
   label,
-  type = "text",
+  type = 'text',
   value,
   onChange,
   name,
@@ -20,5 +20,5 @@ export default function FormInput({
         required={required}
       />
     </label>
-  );
+  )
 }

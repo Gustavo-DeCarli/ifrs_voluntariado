@@ -1,5 +1,5 @@
 export default function Button({
-  type = "button",
+  type = 'button',
   onClick,
   children,
   disabled,
@@ -8,5 +8,5 @@ export default function Button({
     <button type={type} onClick={onClick} disabled={disabled} className="btn">
       {children} {}
     </button>
-  );
+  )
 }

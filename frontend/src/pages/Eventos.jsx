@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
-import { http } from "../api/http";
-import "../Table.css";
+import { useEffect, useState } from 'react'
+import { http } from '../api/http'
+import '../Table.css'
 
 export default function Eventos() {
-  const [eventos, setEventos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [eventos, setEventos] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     http
-      .get("/public/events")
+      .get('/public/events')
       .then(({ data }) => {
-        setEventos(data);
-        setLoading(false);
+        setEventos(data)
+        setLoading(false)
       })
       .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
-  }, []);
+        setError(true)
+        setLoading(false)
+      })
+  }, [])
 
   if (loading) {
     return (
       <section className="card">
         <p>Carregando dados...</p>
       </section>
-    );
+    )
   }
 
   if (error) {
@@ -33,7 +33,7 @@ export default function Eventos() {
       <section className="card">
         <p>Não foi possível carregar os dados. Tente novamente mais tarde.</p>
       </section>
-    );
+    )
   }
 
   return (
@@ -57,5 +57,5 @@ export default function Eventos() {
         </tbody>
       </table>
     </section>
-  );
+  )
 }

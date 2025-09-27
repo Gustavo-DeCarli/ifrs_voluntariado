@@ -1,29 +1,29 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
-import Button from "../components/Button";
-import FormInput from "../components/FormInput";
+import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import Button from '../components/Button'
+import FormInput from '../components/FormInput'
 export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [err, setErr] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { login } = useAuth()
+  const navigate = useNavigate()
+  const { state } = useLocation()
+  const [form, setForm] = useState({ email: '', password: '' })
+  const [err, setErr] = useState('')
+  const [loading, setLoading] = useState(false)
   function updateField(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
   async function handleSubmit(e) {
-    e.preventDefault();
-    setErr("");
-    setLoading(true);
+    e.preventDefault()
+    setErr('')
+    setLoading(true)
     try {
-      await login(form);
-      navigate(state?.from?.pathname || "/events", { replace: true });
+      await login(form)
+      navigate(state?.from?.pathname || '/events', { replace: true })
     } catch {
-      setErr("Credenciais inválidas");
+      setErr('Credenciais inválidas')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
   return (
@@ -50,9 +50,9 @@ export default function Login() {
           required
         />
         <Button type="submit" disabled={loading}>
-          {loading ? "Entrando..." : "Entrar"}
+          {loading ? 'Entrando...' : 'Entrar'}
         </Button>
       </form>
     </section>
-  );
+  )
 }

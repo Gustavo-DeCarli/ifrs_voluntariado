@@ -4,5 +4,5 @@ export default function Forbidden() {
       <h1>403 — Acesso negado</h1>
       <p>Você não possui permissão para acessar este recurso.</p>
     </section>
-  );
+  )
 }
