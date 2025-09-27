@@ -32,9 +32,7 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: (
           <RequireAuth>
-            <RequireRole allowedRoles={['admin', 'user']}>
-              <Dashboard />
-            </RequireRole>
+                <Dashboard />
           </RequireAuth>
         ),
       },

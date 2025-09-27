@@ -23,10 +23,6 @@ Content-Type: application/json
 
 ### Acesso à área admin (rota protegida, requer token de usuário com role "admin")
 GET {{baseURL}}/protected/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGlmcnMuZWR1LmJyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU2MzMyMDQ5LCJleHAiOjE3NTYzMzU2NDl9.bOLBD_2xUZ8F7j85PpCtAmh1jIStviTqYEgUJlL1dKo
-
-### Acesso à área dashboard (rota protegida, requer token de usuário com role "admin" ou "user")
-GET {{baseURL}}/protected/dashborad
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGlmcnMuZWR1LmJyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU2MzMyMDQ5LCJleHAiOjE3NTYzMzU2NDl9.bOLBD_2xUZ8F7j85PpCtAmh1jIStviTqYEgUJlL1dKo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW9AaWZycy5lZHUuYnIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1OTAwMDExNSwiZXhwIjoxNzU5MDAzNzE1fQ.Lgt_DrR2FPL6e1Tb2rvMGxONBVh7TJoejNvTkq_7F5E
 
 
