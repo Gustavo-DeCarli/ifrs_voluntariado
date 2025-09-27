@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import Forbidden from "./pages/Forbidden";
 import Eventos from "./pages/Eventos";
 import Admin from "./pages/Admin";
-import CadastroEvento from "./pages/CadastroEvento";
 
 function NotFound() {
   return (
@@ -29,11 +28,11 @@ const router = createBrowserRouter([
       { path: "forbidden", element: <Forbidden /> },
       { path: "events", element: <Eventos /> },
       {
-        path: "CadastroEvento",
+        path: "Admin",
         element: (
           <RequireAuth>
             <RequireRole role="admin">
-              <CadastroEvento />
+              <Admin />
             </RequireRole>
           </RequireAuth>
         ),

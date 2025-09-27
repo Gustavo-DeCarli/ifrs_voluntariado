@@ -7,7 +7,7 @@ const ProtectedController = require("../controllers/protected.controller");
 const router = express.Router();
 
 router.get(
-  "/CadastroEvento",
+  "/admin",
   authenticateToken,
   authorizeRole("admin"),
   ProtectedController.adminOnly

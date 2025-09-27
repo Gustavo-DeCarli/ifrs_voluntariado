@@ -6,7 +6,7 @@ export default function Admin() {
   const [msg, setMsg] = useState("Carregando...");
   useEffect(() => {
     http
-      .get("/protected/CadastroEvento")
+      .get("/protected/admin")
       .then(({ data }) => setMsg(data.message))
       .catch(() => setMsg("Acesso negado"));
   }, []);
@@ -16,5 +16,5 @@ export default function Admin() {
       <p>{msg}</p>
     </section>
   );
-  
+
 }
