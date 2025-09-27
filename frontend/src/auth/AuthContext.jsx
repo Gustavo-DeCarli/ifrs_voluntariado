@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { http } from '../api/http'
 const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
@@ -46,4 +46,8 @@ export function AuthProvider({ children }) {
     [token, user, loading],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }

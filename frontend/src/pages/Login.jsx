@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../auth/AuthContext'
 import Button from '../components/Button'
 import FormInput from '../components/FormInput'
 export default function Login() {

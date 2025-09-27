@@ -25,6 +25,9 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Login /> },
+      { path: 'login', element: <Login /> },
+      { path: 'forbidden', element: <Forbidden /> },
+      { path: 'events', element: <Eventos /> },
       {
         path: 'dashboard',
         element: (
@@ -35,9 +38,6 @@ const router = createBrowserRouter([
           </RequireAuth>
         ),
       },
-      { path: 'login', element: <Login /> },
-      { path: 'forbidden', element: <Forbidden /> },
-      { path: 'events', element: <Eventos /> },
       {
         path: 'Admin',
         element: (
