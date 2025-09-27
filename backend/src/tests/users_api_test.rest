@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3000
 ### Rota pública (acesso livre)
-GET {{baseURL}}/public/listagem
+GET {{baseURL}}/public/events
 Content-Type: application/json
 ### Cadastro de novo usuário
 POST {{baseURL}}/auth/register

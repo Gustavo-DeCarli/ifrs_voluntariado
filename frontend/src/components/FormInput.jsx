@@ -1,4 +1,3 @@
-// Campo de formulário reutilizável com label e input
 export default function FormInput({
   label,
   type = "text",

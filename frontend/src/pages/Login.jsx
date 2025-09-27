@@ -1,4 +1,3 @@
-// Tela de login: consome /auth/login na API.
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
@@ -19,9 +18,8 @@ export default function Login() {
     setErr("");
     setLoading(true);
     try {
-      await login(form); // chama AuthContext → POST /auth/login
-      // redireciona para a rota pretendida ou para /listagem
-      navigate(state?.from?.pathname || "/listagem", { replace: true });
+      await login(form);
+      navigate(state?.from?.pathname || "/events", { replace: true });
     } catch {
       setErr("Credenciais inválidas");
     } finally {

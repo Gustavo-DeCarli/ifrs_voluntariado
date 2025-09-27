@@ -1,5 +1,4 @@
-// Importamos o Link para navegação entre rotas
-// e o hook de autenticação para exibir login/logout dinamicamente
+
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 export default function Navbar() {
@@ -7,11 +6,11 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <nav className="navbar-inner">
-        {/* brand separado da lista de links */}
+        {}
         <ul className="nav-links">
           {user && (
             <li>
-              <NavLink to="/listagem">Listagem</NavLink>
+              <NavLink to="/events">Eventos</NavLink>
             </li>
           )}
           {!user && (

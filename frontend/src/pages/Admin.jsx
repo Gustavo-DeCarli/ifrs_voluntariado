@@ -1,12 +1,13 @@
-// Rota protegida por RequireAuth + RequireRole('admin').
 import { useEffect, useState } from "react";
 import { http } from "../api/http";
+
 export default function Admin() {
+
   const [msg, setMsg] = useState("Carregando...");
   useEffect(() => {
     http
       .get("/protected/CadastroEvento")
-      .then(({ data }) => setMsg(data.message)) // ex.: "Bem-vindo à área admin, email"
+      .then(({ data }) => setMsg(data.message))
       .catch(() => setMsg("Acesso negado"));
   }, []);
   return (
@@ -15,4 +16,5 @@ export default function Admin() {
       <p>{msg}</p>
     </section>
   );
+  
 }
