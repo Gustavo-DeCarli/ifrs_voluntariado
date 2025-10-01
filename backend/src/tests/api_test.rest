@@ -23,6 +23,6 @@ Content-Type: application/json
 
 ### Acesso à área admin (rota protegida, requer token de usuário com role "admin")
 GET {{baseURL}}/protected/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW9AaWZycy5lZHUuYnIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1OTAwMDExNSwiZXhwIjoxNzU5MDAzNzE1fQ.Lgt_DrR2FPL6e1Tb2rvMGxONBVh7TJoejNvTkq_7F5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGlmcnMuZWR1LmJyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU5MzU2MzM4LCJleHAiOjE3NTkzNTk5Mzh9.uIQ2lvMcsvxlcpS8UZKw0hH0YQTeUBjsJsec1rvBQQk
 
 

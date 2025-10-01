@@ -2,19 +2,31 @@ const express = require('express')
 const AuthController = require('../controllers/auth.controller')
 const router = express.Router()
 /**
-* @openapi
-* components:
-* schemas:
-* Login:
-* type: object
-* required: [email, password]
-* properties:
-* email:
-* type: string
-* example: gustavo.carli@ifrs.com
-* password:
-* type: string
-* example: 1234
-*/
+ * @openapi
+ * /login:
+ *   post:
+ *     summary: Realiza o login do usuário
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Login'
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+ *       401:
+ *         description: Credenciais inválidas
+ */
 router.post('/login', AuthController.login)
 module.exports = router
