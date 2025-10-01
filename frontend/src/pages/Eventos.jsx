@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import { http } from '../api/http'
 import '../Table.css'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 
 export default function Eventos() {
+  const navigate = useNavigate()
   const [eventos, setEventos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [msgAdm, setMsgAdm] = useState('Carregando...')
+  const { user } = useAuth()
+
 
   useEffect(() => {
     http
@@ -39,6 +45,9 @@ export default function Eventos() {
   return (
     <section className="card">
       <h1>Listagem de Eventos</h1>
+      {user.role == 'admin' && (
+        <button className="btn" onClick={() => navigate('/IncluirEvento')}>Incluir</button>
+      )}
       <table>
         <thead>
           <tr>
