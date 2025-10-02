@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3000
 ### Rota pública
-GET {{baseURL}}/public/events
+GET {{baseURL}}/events
 Content-Type: application/json
 
 ### Login do usuário comum (usuário já existente no banco)

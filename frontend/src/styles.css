@@ -135,6 +135,24 @@ a {
   border: 0;
   font-weight: 600;
 }
+.btnDel {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: #c41010;
+  color: #fff;
+  border: 0;
+  font-weight: 600;
+}
+.btnEdt {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: #1464ce;
+  color: #fff;
+  border: 0;
+  font-weight: 600;
+}
 .btn:hover {
   filter: brightness(0.95);
 }

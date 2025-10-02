@@ -9,6 +9,7 @@ import Eventos from './pages/Eventos'
 import Admin from './pages/Admin'
 import Dashboard from './pages/Dashboard'
 import IncluirEvento from './pages/IncluirEvento'
+import EditarEvento from './pages/EditarEvento'
 
 function NotFound() {
   return (
@@ -53,6 +54,16 @@ const router = createBrowserRouter([
           <RequireAuth>
             <RequireRole role="admin">
               <IncluirEvento />
+            </RequireRole>
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'EditarEvento/:id',
+        element: (
+          <RequireAuth>
+            <RequireRole role="admin">
+              <EditarEvento />
             </RequireRole>
           </RequireAuth>
         ),

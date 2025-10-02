@@ -4,17 +4,17 @@ const UserModel = require('../models/userModel')
 
 class UserService {
   /**
-  * Serviço de usuários: regras de negócio relacionadas a usuário.
-  * @module services/UserService
-  */
+   * Serviço de usuários: regras de negócio relacionadas a usuário.
+   * @module services/UserService
+   */
 
   /**
-  * Valida o nome do usuário.
-  * @param {string} email - Nome informado
-  * @param {string} password - Senha informado
-  * @returns {boolean} true se válido
-  * @throws {Error} Se senha inválida ou usuário não encontrado
-  */
+   * Valida o nome do usuário.
+   * @param {string} email - Nome informado
+   * @param {string} password - Senha informado
+   * @returns {boolean} true se válido
+   * @throws {Error} Se senha inválida ou usuário não encontrado
+   */
   static async loginUser({ email, password }) {
     const user = await UserModel.findByEmail(email)
     if (!user) {

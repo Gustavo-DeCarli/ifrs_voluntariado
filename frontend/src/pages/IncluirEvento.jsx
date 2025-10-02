@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../auth/SaveContext'
+import { useAuth } from '../auth/AuthContext'
 import Button from '../components/Button'
 import FormInput from '../components/FormInput'
 export default function IncluirEvento() {
@@ -18,10 +18,10 @@ export default function IncluirEvento() {
     setErr('')
     setLoading(true)
     try {
-      await saveEvent(form)
+      await saveEvent({ form }) 
       navigate(state?.from?.pathname || '/events', { replace: true })
-    } catch {
-      setErr('Credenciais inválidas')
+    } catch (error) {
+      setErr(error.message || 'Dados inválidos') 
     } finally {
       setLoading(false)
     }
@@ -35,7 +35,7 @@ export default function IncluirEvento() {
           label="Nome evento"
           type="string"
           name="evento"
-          value={form.IncluirEvento}
+          value={form.evento} 
           placeholder="Evento tarara"
           onChange={updateField}
           required
