@@ -4,9 +4,9 @@ import '../Table.css'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 
-export default function Eventos() {
+export default function Users() {
   const navigate = useNavigate()
-  const [eventos, setEventos] = useState({ listagem: [] })
+  const [users, setUsers] = useState({ listagem: [] })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const { user } = useAuth()
@@ -14,9 +14,9 @@ export default function Eventos() {
 
   useEffect(() => {
     http
-      .get('/events')
+      .get('/users')
       .then(({ data }) => {
-        setEventos(data)
+        setUsers(data)
         setLoading(false)
       })
       .catch(() => {
@@ -26,17 +26,17 @@ export default function Eventos() {
   }, [])
 
   const excluirEvento = (id) => {
-    if (window.confirm('Tem certeza que deseja excluir este evento?')) {
+    if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
       http
-        .delete(`/events/${id}`)
+        .delete(`/users/${id}`)
         .then(() => {
-          setEventos({
-            listagem: eventos.listagem.filter(evento => evento.id !== id),
+          setUsers({
+            listagem: users.listagem.filter(user => user.id !== id),
           }); 
-          alert('Evento excluído com sucesso!')
+          alert('Usuário excluído com sucesso!')
         })
         .catch(() => {
-          alert('Erro ao excluir o evento. Tente novamente mais tarde.')
+          alert('Erro ao excluir o usuário. Tente novamente mais tarde.')
         })
     }
   }
@@ -59,30 +59,26 @@ export default function Eventos() {
 
   return (
     <section className="card">
-      <h1>Listagem de Eventos</h1>
-      {user != null && user.role == 'admin' && (
-        <button className="btn" onClick={() => navigate('/IncluirEvento')}>Incluir</button>
-      )}
+      <h1>Listagem de Usuários</h1>
+      <button className="btn" onClick={() => navigate('/IncluirEvento')}>Incluir</button>
       <table>
         <thead>
           <tr>
             <th>Nome</th>
             <th>Email</th>
-            {user != null && user.role == 'admin' && <th>Ações</th>}
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           { }
-          {eventos.listagem.map((evento) => (
+          {users.listagem.map((evento) => (
             <tr key={evento.id}>
               <td>{evento.nome}</td>
               <td>{new Date(evento.data).toLocaleDateString('pt-BR')}</td>
-              {user != null && user.role == 'admin' && (
-                <td>
-                  <button className="btnEdt" onClick={() => navigate(`/EditarEvento/${evento.id}`)}>Editar</button>
-                  <button className="btnDel" onClick={() => excluirEvento(evento.id)}>Excluir</button>
-                </td>
-              )}
+              <td>
+                <button className="btnEdt" onClick={() => navigate(`/EditarEvento/${evento.id}`)}>Editar</button>
+                <button className="btnDel" onClick={() => excluirEvento(evento.id)}>Excluir</button>
+              </td>
             </tr>
           ))}
         </tbody>

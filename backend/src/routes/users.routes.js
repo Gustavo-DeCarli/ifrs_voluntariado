@@ -1,5 +1,5 @@
 const express = require('express')
-const EventsController = require('../controllers/events.controller')
+const UsersController = require('../controllers/users.controller')
 const {
   authenticateToken,
   authorizeRole,
@@ -46,7 +46,7 @@ const router = express.Router()
  *             schema:
  *               $ref: '#/components/schemas/EventListResponse'
  */
-router.get('/', EventsController.events)
+router.get('/', UsersController.events)
 
 /**
  * @openapi
@@ -87,7 +87,7 @@ router.post(
   '/',
   authenticateToken,
   authorizeRole('admin'),
-  EventsController.createEvent,
+  UsersController.createEvent,
 )
 
 /**
@@ -116,7 +116,7 @@ router.delete(
   '/:id',
   authenticateToken,
   authorizeRole('admin'), // Garantir que só administradores possam excluir eventos
-  EventsController.deleteEvents, // Chama o método de exclusão no controller
+  UsersController.deleteEvents, // Chama o método de exclusão no controller
 )
 
 /**
@@ -167,7 +167,7 @@ router.put(
   '/:id',
   authenticateToken,
   authorizeRole('admin'),
-  EventsController.updateEvent,
+  UsersController.updateEvent,
 )
 
 module.exports = router

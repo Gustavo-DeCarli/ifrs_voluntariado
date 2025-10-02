@@ -31,6 +31,20 @@ class UserService {
     )
     return { token, user: { email: user.email, role: user.role } }
   }
+
+  /**
+   * Valida o nome do usuário.
+   * @returns {Array} Array de eventos
+   * @throws {Error} Se nenhum evento encontrado
+   */
+  static async listagem() {
+    const listagem = await UserModel.listagem()
+    if (listagem.length == 0) {
+      throw new Error('Nenhum evento encontrado')
+    }
+
+    return { listagem }
+  }
 }
 
 module.exports = UserService

@@ -1,9 +1,9 @@
-const EventsService = require('../services/EventsService')
+const UsersService = require('../services/userService')
 
-class EventsController {
+class UsersController {
   static async createEvent(req, res) {
     try {
-      const result = await EventsService.createEvent(req.body)
+      const result = await UsersService.createEvent(req.body)
       return res.status(200).json(result)
     } catch (error) {
       const status = 404
@@ -13,7 +13,7 @@ class EventsController {
 
   static async events(req, res) {
     try {
-      const result = await EventsService.listagem()
+      const result = await UsersService.listagem()
       return res.status(200).json(result)
     } catch (error) {
       return res.status(404).json({ message: error.message }).id
@@ -22,7 +22,7 @@ class EventsController {
 
   static async deleteEvents(req, res) {
     try {
-      const result = await EventsService.deleteEvent(req.params.id)
+      const result = await UsersService.deleteEvent(req.params.id)
       return res.status(200).json(result)
     } catch (error) {
       return res.status(404).json({ message: error.message })
@@ -33,7 +33,7 @@ class EventsController {
     try {
       const { id } = req.params
       const { evento, data } = req.body
-      const result = await EventsService.updateEvent(id, evento, data)
+      const result = await UsersService.updateEvent(id, evento, data)
       return res.status(200).json(result)
     } catch (error) {
       return res.status(404).json({ message: error.message })
@@ -41,4 +41,4 @@ class EventsController {
   }
 }
 
-module.exports = EventsController
+module.exports = UsersController

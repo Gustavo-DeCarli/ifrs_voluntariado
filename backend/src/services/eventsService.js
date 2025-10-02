@@ -57,13 +57,13 @@ class EventsService {
       const result = await EventModel.deleteEvents(id)
 
       if (result.affectedRows === 0) {
-        throw new Error('Evento não encontrado');
+        throw new Error('Evento não encontrado')
       }
 
       return result
     } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao excluir o evento');
+      console.error(error)
+      throw new Error('Erro ao excluir o evento')
     }
   }
 
@@ -80,13 +80,13 @@ class EventsService {
       const result = await EventModel.updateEvent(id, evento, data)
 
       if (result.affectedRows === 0) {
-        throw new Error('Evento não encontrado');
+        throw new Error('Evento não encontrado')
       }
 
       return result
     } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao alterar o evento');
+      console.error(error)
+      throw new Error('Erro ao alterar o evento')
     }
   }
 }
