@@ -26,12 +26,12 @@ export default function Navbar() {
             <>
               {user.role === 'admin' && (
                 <>
-                <li>
-                  <NavLink to="/admin">Admin</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/users">Usuários</NavLink>
-                </li>
+                  <li>
+                    <NavLink to="/admin">Admin</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/users">Usuários</NavLink>
+                  </li>
                 </>
               )}
               <li>

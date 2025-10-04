@@ -120,7 +120,7 @@ router.post(
 router.delete(
   '/:id',
   authenticateToken,
-  authorizeRole('admin'), 
+  authorizeRole('admin'),
   UsersController.deleteUsers,
 )
 

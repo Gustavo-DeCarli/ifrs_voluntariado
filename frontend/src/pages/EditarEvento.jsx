@@ -1,52 +1,54 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { http } from '../api/http';
-import Button from '../components/Button';
-import FormInput from '../components/FormInput';
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { http } from '../api/http'
+import Button from '../components/Button'
+import FormInput from '../components/FormInput'
 
 export default function EditarEvento() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ evento: '', data: '' });
-  const [err, setErr] = useState('');
-  const [loading, setLoading] = useState(false);
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [form, setForm] = useState({ evento: '', data: '' })
+  const [err, setErr] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-  http
-    .get('/events') 
-    .then(({ data }) => {
-      const eventoEncontrado = data.listagem.find(evento => evento.id === parseInt(id));
-      if (eventoEncontrado) {
-        setForm({
-          evento: eventoEncontrado.nome,
-          data: new Date(eventoEncontrado.data).toISOString().split('T')[0],
-        });
-      } else {
-        setErr('Evento não encontrado!');
-      }
-    })
-    .catch(() => {
-      setErr('Erro ao carregar os eventos.');
-    });
-  }, [id]);
+    http
+      .get('/events')
+      .then(({ data }) => {
+        const eventoEncontrado = data.listagem.find(
+          (evento) => evento.id === parseInt(id),
+        )
+        if (eventoEncontrado) {
+          setForm({
+            evento: eventoEncontrado.nome,
+            data: new Date(eventoEncontrado.data).toISOString().split('T')[0],
+          })
+        } else {
+          setErr('Evento não encontrado!')
+        }
+      })
+      .catch(() => {
+        setErr('Erro ao carregar os eventos.')
+      })
+  }, [id])
 
   function updateField(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setErr('');
-    setLoading(true);
+    e.preventDefault()
+    setErr('')
+    setLoading(true)
 
     try {
-      await http.put(`/events/${id}`, form);
-      alert('Evento atualizado com sucesso!');
-      navigate('/events'); 
+      await http.put(`/events/${id}`, form)
+      alert('Evento atualizado com sucesso!')
+      navigate('/events')
     } catch {
-      setErr('Erro ao atualizar evento.');
+      setErr('Erro ao atualizar evento.')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
@@ -76,5 +78,5 @@ export default function EditarEvento() {
         </Button>
       </form>
     </section>
-  );
+  )
 }

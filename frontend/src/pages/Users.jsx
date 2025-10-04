@@ -28,8 +28,8 @@ export default function Users() {
         .delete(`/users/${id}`)
         .then(() => {
           setUsers({
-            listagem: users.listagem.filter(user => user.id !== id),
-          }); 
+            listagem: users.listagem.filter((user) => user.id !== id),
+          })
           alert('Usuário excluído com sucesso!')
         })
         .catch(() => {
@@ -57,8 +57,10 @@ export default function Users() {
   return (
     <section className="card">
       <h1>Listagem de Usuários</h1>
-      <button className="btn" onClick={() => navigate('/IncluirUser')}>Incluir</button>
-      <hr/>
+      <button className="btn" onClick={() => navigate('/IncluirUser')}>
+        Incluir
+      </button>
+      <hr />
       <table>
         <thead>
           <tr>
@@ -68,14 +70,21 @@ export default function Users() {
           </tr>
         </thead>
         <tbody>
-          { }
+          {}
           {users.listagem.map((user) => (
             <tr key={user.id}>
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button className="btnEdt" onClick={() => navigate(`/EditarUser/${user.id}`)}>Editar</button>
-                <button className="btnDel" onClick={() => excluirUser(user.id)}>Excluir</button>
+                <button
+                  className="btnEdt"
+                  onClick={() => navigate(`/EditarUser/${user.id}`)}
+                >
+                  Editar
+                </button>
+                <button className="btnDel" onClick={() => excluirUser(user.id)}>
+                  Excluir
+                </button>
               </td>
             </tr>
           ))}

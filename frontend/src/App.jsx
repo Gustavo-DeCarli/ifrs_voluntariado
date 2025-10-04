@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: (
           <RequireAuth>
-                <Dashboard />
+            <Dashboard />
           </RequireAuth>
         ),
       },

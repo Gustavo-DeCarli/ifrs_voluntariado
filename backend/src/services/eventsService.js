@@ -94,7 +94,7 @@ class EventsService {
    * Valida o nome do usuário.
    * @returns {Array} Array de inscrições
    * @throws {Error} Se nenhuma inscrição encontrada
-  */
+   */
   static async getSubscribes() {
     try {
       return EventModel.getSubscribes()

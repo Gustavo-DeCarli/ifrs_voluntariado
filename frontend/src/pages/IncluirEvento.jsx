@@ -18,10 +18,10 @@ export default function IncluirEvento() {
     setErr('')
     setLoading(true)
     try {
-      await saveEvent({ form }) 
+      await saveEvent({ form })
       navigate(state?.from?.pathname || '/events', { replace: true })
     } catch (error) {
-      setErr(error.message || 'Dados inválidos') 
+      setErr(error.message || 'Dados inválidos')
     } finally {
       setLoading(false)
     }
@@ -35,7 +35,7 @@ export default function IncluirEvento() {
           label="Nome evento"
           type="string"
           name="evento"
-          value={form.evento} 
+          value={form.evento}
           placeholder="Evento tarara"
           onChange={updateField}
           required

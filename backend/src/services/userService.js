@@ -56,9 +56,13 @@ class UserService {
     if (form.email == null || form.password == null || form.role == null) {
       throw new Error('Dados incorretos, verifique e tente novamente!')
     }
-    const hashed = await bcrypt.hash(form.password, 10);
-    form.password = hashed;
-    const result = await UserModel.createUser(form.email, form.password, form.role)
+    const hashed = await bcrypt.hash(form.password, 10)
+    form.password = hashed
+    const result = await UserModel.createUser(
+      form.email,
+      form.password,
+      form.role,
+    )
     if (result.affectedRows == 0) {
       throw new Error('Erro ao adicionar usuário!')
     }
@@ -76,8 +80,8 @@ class UserService {
    */
   static async updateUser(id, email, password, role) {
     try {
-      const hashed = await bcrypt.hash(password, 10);
-      password = hashed;
+      const hashed = await bcrypt.hash(password, 10)
+      password = hashed
       const result = await UserModel.updateUser(id, email, password, role)
 
       if (result.affectedRows === 0) {

@@ -7,18 +7,17 @@ class UserModel {
     ])
     return rows[0]
   }
-  
+
   static async listagem() {
     const [rows] = await db.query('SELECT * FROM users')
     return rows
   }
 
   static async createUser(email, password, role) {
-    const [results] = await db.query(`INSERT INTO users VALUES (NULL, ?, ?, ?, NULL)`, [
-      email,
-      password,
-      role,
-    ])
+    const [results] = await db.query(
+      `INSERT INTO users VALUES (NULL, ?, ?, ?, NULL)`,
+      [email, password, role],
+    )
     return results
   }
 

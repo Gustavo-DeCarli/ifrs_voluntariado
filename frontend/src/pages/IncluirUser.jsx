@@ -18,10 +18,10 @@ export default function IncluirUser() {
     setErr('')
     setLoading(true)
     try {
-      await saveUser({ form }) 
+      await saveUser({ form })
       navigate(state?.from?.pathname || '/users', { replace: true })
     } catch (error) {
-      setErr(error.message || 'Dados inválidos') 
+      setErr(error.message || 'Dados inválidos')
     } finally {
       setLoading(false)
     }
@@ -35,7 +35,7 @@ export default function IncluirUser() {
           label="Email"
           type="email"
           name="email"
-          value={form.email} 
+          value={form.email}
           placeholder="Email@teste.com"
           onChange={updateField}
           required
