@@ -9,52 +9,54 @@ const router = express.Router()
  * @openapi
  * components:
  *   schemas:
- *     Event:
+ *     User:
  *       type: object
  *       properties:
- *         id:
- *           type: integer
- *           example: 1
- *         nome:
+ *         email:
  *           type: string
- *           example: Passeata 7 de setembro
- *         data:
- *           type: string
- *           format: date-time
- *           example: 2025-10-05T03:00:00.000Z
- *     EventListResponse:
+ *           description: Email do usuário
+ *           example: "teste@gmail.com"
+ *          password:
+ *            type: string
+ *            description: Senha do usuário
+ *            example: "123456"
+ *          role:
+ *            type: string
+ *            description: Tipo de role do usuário (user/admin)
+ *            example: "admin"
+ *     UserListResponse:
  *       type: object
  *       properties:
  *         listagem:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/Event'
+ *             $ref: '#/components/schemas/User'
  */
 
 /**
  * @openapi
- * /events:
+ * /users:
  *   get:
- *     summary: Retorna a lista de eventos públicos
+ *     summary: Retorna a lista de usuários públicos
  *     tags:
- *       - Events
+ *       - Users
  *     responses:
  *       200:
- *         description: Lista de eventos retornada com sucesso
+ *         description: Lista de usuários retornada com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/EventListResponse'
+ *               $ref: '#/components/schemas/UserListResponse'
  */
-router.get('/', UsersController.events)
+router.get('/', UsersController.users)
 
 /**
  * @openapi
- * /events:
+ * /users:
  *   post:
- *     summary: Cria um novo evento
+ *     summary: Cria um novo usuário
  *     tags:
- *       - Events
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:
@@ -62,18 +64,21 @@ router.get('/', UsersController.events)
  *           schema:
  *             type: object
  *             properties:
- *               nome:
+ *               email:
  *                 type: string
- *                 description: Nome do evento a ser criado
- *                 example: "Passeata 7 de setembro"
- *               data:
+ *                 description: Email do usuário
+ *                 example: "teste@gmail.com"
+ *               password:
  *                 type: string
- *                 format: date-time
- *                 description: Data do evento no formato ISO 8601
- *                 example: "2025-10-05T03:00:00.000Z"
+ *                 description: Senha do usuário
+ *                 example: "123456"
+ *               role:
+ *                 type: string
+ *                 description: Tipo de role do usuário (user/admin)
+ *                 example: "admin"
  *     responses:
  *       201:
- *         description: Evento criado com sucesso
+ *         description: Usuário criado com sucesso
  *       400:
  *         description: Dados inválidos
  *       401:
@@ -87,49 +92,49 @@ router.post(
   '/',
   authenticateToken,
   authorizeRole('admin'),
-  UsersController.createEvent,
+  UsersController.createUser,
 )
 
 /**
  * @openapi
- * /events/{id}:
+ * /users/{id}:
  *   delete:
- *     summary: Exclui um evento pelo ID
+ *     summary: Exclui um usuário pelo ID
  *     tags:
- *       - Events
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path
- *         description: ID do evento a ser excluído
+ *         description: ID do usuário a ser excluído
  *         required: true
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Evento excluído com sucesso
+ *         description: Usuário excluído com sucesso
  *       404:
- *         description: Evento não encontrado
+ *         description: Usuário não encontrado
  *       500:
- *         description: Erro ao excluir o evento
+ *         description: Erro ao excluir o usuário
  */
 router.delete(
   '/:id',
   authenticateToken,
-  authorizeRole('admin'), // Garantir que só administradores possam excluir eventos
-  UsersController.deleteEvents, // Chama o método de exclusão no controller
+  authorizeRole('admin'), 
+  UsersController.deleteUsers,
 )
 
 /**
  * @openapi
- * /events/{id}:
+ * /users/{id}:
  *   put:
- *     summary: Atualiza os detalhes de um evento existente
+ *     summary: Atualiza os detalhes de um usuário existente
  *     tags:
- *       - Events
+ *       - Users
  *     parameters:
  *       - name: id
  *         in: path
- *         description: ID do evento a ser atualizado
+ *         description: ID do usuário a ser atualizado
  *         required: true
  *         schema:
  *           type: integer
@@ -140,18 +145,21 @@ router.delete(
  *           schema:
  *             type: object
  *             properties:
- *               nome:
+ *               email:
  *                 type: string
- *                 description: Novo nome do evento
- *                 example: "Passeata 7 de setembro"
- *               data:
+ *                 description: Email do usuário
+ *                 example: "teste@gmail.com"
+ *               password:
  *                 type: string
- *                 format: date-time
- *                 description: Nova data do evento no formato ISO 8601
- *                 example: "2025-10-10T03:00:00.000Z"
+ *                 description: Senha do usuário
+ *                 example: "123456"
+ *               role:
+ *                 type: string
+ *                 description: Tipo de role do usuário (user/admin)
+ *                 example: "admin"
  *     responses:
  *       200:
- *         description: Evento atualizado com sucesso
+ *         description: Usuário atualizado com sucesso
  *       400:
  *         description: Dados inválidos ou parâmetros incorretos
  *       401:
@@ -159,7 +167,7 @@ router.delete(
  *       403:
  *         description: Acesso proibido
  *       404:
- *         description: Evento não encontrado
+ *         description: Usuário não encontrado
  *       500:
  *         description: Erro interno do servidor
  */
@@ -167,7 +175,7 @@ router.put(
   '/:id',
   authenticateToken,
   authorizeRole('admin'),
-  UsersController.updateEvent,
+  UsersController.updateUser,
 )
 
 module.exports = router

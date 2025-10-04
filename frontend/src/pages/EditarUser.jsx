@@ -4,29 +4,30 @@ import { http } from '../api/http';
 import Button from '../components/Button';
 import FormInput from '../components/FormInput';
 
-export default function EditarEvento() {
+export default function EditarUser() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ evento: '', data: '' });
+  const [form, setForm] = useState({ email: '', password: '', role: '' });
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
   http
-    .get('/events') 
+    .get('/users') 
     .then(({ data }) => {
-      const eventoEncontrado = data.listagem.find(evento => evento.id === parseInt(id));
-      if (eventoEncontrado) {
+      const usuarioEncontrado = data.listagem.find(user => user.id === parseInt(id));
+      if (usuarioEncontrado) {
         setForm({
-          evento: eventoEncontrado.nome,
-          data: new Date(eventoEncontrado.data).toISOString().split('T')[0],
+          email: usuarioEncontrado.email,
+          password: '',
+          role: usuarioEncontrado.role,
         });
       } else {
-        setErr('Evento não encontrado!');
+        setErr('Usuário não encontrado!');
       }
     })
     .catch(() => {
-      setErr('Erro ao carregar os eventos.');
+      setErr('Erro ao carregar os usuários.');
     });
   }, [id]);
 
@@ -40,11 +41,11 @@ export default function EditarEvento() {
     setLoading(true);
 
     try {
-      await http.put(`/events/${id}`, form);
-      alert('Evento atualizado com sucesso!');
-      navigate('/events'); 
+      await http.put(`/users/${id}`, form);
+      alert('Usuário atualizado com sucesso!');
+      navigate('/users'); 
     } catch {
-      setErr('Erro ao atualizar evento.');
+      setErr('Erro ao atualizar usuário.');
     } finally {
       setLoading(false);
     }
@@ -52,22 +53,30 @@ export default function EditarEvento() {
 
   return (
     <section className="card">
-      <h1>Editar Evento</h1>
+      <h1>Editar Usuário</h1>
       {err && <p className="alert">{err}</p>}
       <form onSubmit={handleSubmit} className="form form--inline">
         <FormInput
-          label="Nome do Evento"
-          type="text"
-          name="evento"
-          value={form.evento}
+          label="Email"
+          type="email"
+          name="email"
+          value={form.email} 
           onChange={updateField}
           required
         />
         <FormInput
-          label="Data"
-          type="date"
-          name="data"
-          value={form.data}
+          label="senha"
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={updateField}
+          required
+        />
+        <FormInput
+          label="Role"
+          type="select"
+          name="role"
+          value={form.role}
           onChange={updateField}
           required
         />

@@ -89,5 +89,63 @@ class EventsService {
       throw new Error('Erro ao alterar o evento')
     }
   }
+
+  /**
+   * Valida o nome do usuário.
+   * @returns {Array} Array de inscrições
+   * @throws {Error} Se nenhuma inscrição encontrada
+  */
+  static async getSubscribes() {
+    try {
+      return EventModel.getSubscribes()
+    } catch (error) {
+      console.error(error)
+      throw new Error('Erro ao listar inscrições')
+    }
+  }
+
+  /**
+   * Insere nova inscrição.
+   * @param {Number} idEvent - Id do evento
+   * @param {Number} idUser - Id do usuário
+   * @returns {Array} Array de resultado do DB
+   * @throws {Error} Se acontecer erro ao realizar inscrição em um evento
+   */
+  static async subscribeEvent(idEvent, idUser) {
+    try {
+      const result = await EventModel.subscribeEvent(idEvent, idUser)
+
+      if (result.affectedRows === 0) {
+        throw new Error('Evento não encontrado')
+      }
+
+      return result
+    } catch (error) {
+      console.error(error)
+      throw new Error('Erro ao inscrever no evento')
+    }
+  }
+
+  /**
+   * Desinscrição de evento.
+   * @param {Number} idEvent - Id do evento
+   * @param {Number} idUser - Id do usuário
+   * @returns {Array} result com dados de resultado do DB
+   * @throws {Error} Se acontecer erro ao excluir inscrição
+   */
+  static async unsubscribeEvent(idEvent, idUser) {
+    try {
+      const result = await EventModel.unsubscribeEvent(idEvent, idUser)
+
+      if (result.affectedRows === 0) {
+        throw new Error('Evento não encontrado')
+      }
+
+      return result
+    } catch (error) {
+      console.error(error)
+      throw new Error('Erro ao desinscrever no evento')
+    }
+  }
 }
 module.exports = EventsService

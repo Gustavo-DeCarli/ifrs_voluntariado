@@ -9,8 +9,30 @@ class UserModel {
   }
   
   static async listagem() {
-    const [rows] = await db.query('SELECT * FROM events')
+    const [rows] = await db.query('SELECT * FROM users')
     return rows
+  }
+
+  static async createUser(email, password, role) {
+    const [results] = await db.query(`INSERT INTO users VALUES (NULL, ?, ?, ?, NULL)`, [
+      email,
+      password,
+      role,
+    ])
+    return results
+  }
+
+  static async updateUser(id, email, password, role) {
+    const [results] = await db.query(
+      'UPDATE users SET email = ?, password = ?, password = ? WHERE id = ?',
+      [email, password, role, id],
+    )
+    return results
+  }
+
+  static async deleteUsers(id) {
+    const [results] = await db.query('DELETE FROM users WHERE id = ?', [id])
+    return results
   }
 }
 

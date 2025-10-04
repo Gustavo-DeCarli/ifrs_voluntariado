@@ -25,25 +25,89 @@ class UserService {
       throw new Error('Senha inválida')
     }
     const token = jwt.sign(
-      { email: user.email, role: user.role },
+      { email: user.email, role: user.role, id: user.id },
       process.env.JWT_SECRET,
       { expiresIn: '1h' },
     )
-    return { token, user: { email: user.email, role: user.role } }
+    return { token, user: { email: user.email, role: user.role, id: user.id } }
   }
 
   /**
-   * Valida o nome do usuário.
-   * @returns {Array} Array de eventos
-   * @throws {Error} Se nenhum evento encontrado
+   * Retorna array de usuários.
+   * @returns {Array} Array de usuários
+   * @throws {Error} Se nenhum usuário encontrado
    */
   static async listagem() {
     const listagem = await UserModel.listagem()
     if (listagem.length == 0) {
-      throw new Error('Nenhum evento encontrado')
+      throw new Error('Nenhum usuário encontrado')
     }
 
     return { listagem }
+  }
+
+  /**
+   * Insere novo usuário.
+   * @param {Array} form - Array com email, senha e role do usuário
+   * @returns {Array} Array de resultado do DB
+   * @throws {Error} Se acontecer erro ao adicionar usuário
+   */
+  static async createUser(form) {
+    if (form.email == null || form.password == null || form.role == null) {
+      throw new Error('Dados incorretos, verifique e tente novamente!')
+    }
+    const hashed = await bcrypt.hash(form.password, 10);
+    form.password = hashed;
+    const result = await UserModel.createUser(form.email, form.password, form.role)
+    if (result.affectedRows == 0) {
+      throw new Error('Erro ao adicionar usuário!')
+    }
+
+    return { result }
+  }
+
+  /**
+   * Atualiza usuário.
+   * @param {Number} id - ID do usuário
+   * @param {String} email - Email do usuário
+   * @param {String} password - Senha do usuário
+   * @returns {Array} Result com dados de resultado do DB
+   * @throws {Error} Se acontecer erro ao alterar usuário ou quando não encontrado nenhum usuário com o ID informado
+   */
+  static async updateUser(id, email, password, role) {
+    try {
+      const result = await UserModel.updateUser(id, email, password, role)
+
+      if (result.affectedRows === 0) {
+        throw new Error('Usuário não encontrado')
+      }
+
+      return result
+    } catch (error) {
+      console.error(error)
+      throw new Error('Erro ao alterar usuário')
+    }
+  }
+
+  /**
+   * Deleta usuário.
+   * @param {Number} id - ID do usuário
+   * @returns {Array} result com dados de resultado do DB
+   * @throws {Error} Se acontecer erro ao excluir usuário ou quando não encontrado nenhum usuário com o ID informado
+   */
+  static async deleteUsers(id) {
+    try {
+      const result = await UserModel.deleteUsers(id)
+
+      if (result.affectedRows === 0) {
+        throw new Error('Usuário não encontrado')
+      }
+
+      return result
+    } catch (error) {
+      console.error(error)
+      throw new Error('Erro ao excluir o usuário')
+    }
   }
 }
 

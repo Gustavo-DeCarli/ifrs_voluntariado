@@ -38,6 +38,10 @@ export function AuthProvider({ children }) {
     await http.post('/events', form)
   }
 
+  async function saveUser({ form }) {
+    await http.post('/users', form)
+  }
+
   function logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
@@ -46,7 +50,7 @@ export function AuthProvider({ children }) {
   }
 
   const value = useMemo(
-    () => ({ token, user, login, logout, loading, saveEvent }),
+    () => ({ token, user, login, logout, loading, saveEvent, saveUser }),
     [token, user, loading],
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

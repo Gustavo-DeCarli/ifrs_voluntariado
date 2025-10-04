@@ -11,6 +11,8 @@ import Dashboard from './pages/Dashboard'
 import IncluirEvento from './pages/IncluirEvento'
 import EditarEvento from './pages/EditarEvento'
 import Users from './pages/Users'
+import IncluirUser from './pages/IncluirUser'
+import EditarUser from './pages/EditarUser'
 
 function NotFound() {
   return (
@@ -75,6 +77,26 @@ const router = createBrowserRouter([
           <RequireAuth>
             <RequireRole role="admin">
               <Users />
+            </RequireRole>
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'IncluirUser',
+        element: (
+          <RequireAuth>
+            <RequireRole role="admin">
+              <IncluirUser />
+            </RequireRole>
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'EditarUser/:id',
+        element: (
+          <RequireAuth>
+            <RequireRole role="admin">
+              <EditarUser />
             </RequireRole>
           </RequireAuth>
         ),

@@ -39,6 +39,35 @@ class EventsController {
       return res.status(404).json({ message: error.message })
     }
   }
+
+  static async getSubscribes(req, res) {
+    try {
+      const result = await EventsService.getSubscribes()
+      return res.status(200).json(result)
+    } catch (error) {
+      return res.status(404).json({ message: error.message })
+    }
+  }
+
+  static async subscribeEvent(req, res) {
+    try {
+      const { idEvent, idUser } = req.params
+      const result = await EventsService.subscribeEvent(idEvent, idUser)
+      return res.status(200).json(result)
+    } catch (error) {
+      return res.status(404).json({ message: error.message })
+    }
+  }
+
+  static async unsubscribeEvent(req, res) {
+    try {
+      const { idEvent, idUser } = req.params
+      const result = await EventsService.unsubscribeEvent(idEvent, idUser)
+      return res.status(200).json(result)
+    } catch (error) {
+      return res.status(404).json({ message: error.message })
+    }
+  }
 }
 
 module.exports = EventsController

@@ -1,9 +1,9 @@
 const UsersService = require('../services/userService')
 
 class UsersController {
-  static async createEvent(req, res) {
+  static async createUser(req, res) {
     try {
-      const result = await UsersService.createEvent(req.body)
+      const result = await UsersService.createUser(req.body)
       return res.status(200).json(result)
     } catch (error) {
       const status = 404
@@ -11,7 +11,7 @@ class UsersController {
     }
   }
 
-  static async events(req, res) {
+  static async users(req, res) {
     try {
       const result = await UsersService.listagem()
       return res.status(200).json(result)
@@ -20,20 +20,20 @@ class UsersController {
     }
   }
 
-  static async deleteEvents(req, res) {
+  static async deleteUsers(req, res) {
     try {
-      const result = await UsersService.deleteEvent(req.params.id)
+      const result = await UsersService.deleteUsers(req.params.id)
       return res.status(200).json(result)
     } catch (error) {
       return res.status(404).json({ message: error.message })
     }
   }
 
-  static async updateEvent(req, res) {
+  static async updateUser(req, res) {
     try {
       const { id } = req.params
-      const { evento, data } = req.body
-      const result = await UsersService.updateEvent(id, evento, data)
+      const { email, password, role } = req.body
+      const result = await UsersService.updateUser(id, email, password, role)
       return res.status(200).json(result)
     } catch (error) {
       return res.status(404).json({ message: error.message })

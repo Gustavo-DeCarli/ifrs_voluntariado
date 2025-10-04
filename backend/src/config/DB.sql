@@ -30,3 +30,9 @@ INSERT INTO events (id, nome, data) VALUES
 (null, 'Circo de Palhaços', '2026-01-29'),
 (null, 'Corrida de Hotwaheels', '2025-12-22'),
 (null, 'Corrida de Natal', '2025-12-24');
+
+CREATE TABLE IF NOT EXISTS subsevents (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ idEvent INT NOT NULL,
+ idUser INT NOT NULL
+);

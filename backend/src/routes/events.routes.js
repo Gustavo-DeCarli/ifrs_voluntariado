@@ -170,4 +170,87 @@ router.put(
   EventsController.updateEvent,
 )
 
+/**
+ * @openapi
+ * /events/subscribes:
+ *   get:
+ *     summary: Retorna a lista de inscrições em eventos
+ *     tags:
+ *       - Events
+ *     responses:
+ *       200:
+ *         description: Lista de inscrições retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/EventListResponse'
+ */
+router.get('/subscribes', EventsController.getSubscribes)
+
+/**
+ * @openapi
+ * /events/{idEvent}/user/${idUser}:
+ *   post:
+ *     summary: Inscreve um usuário em um evento pelo ID do evento e ID do user
+ *     tags:
+ *       - Events
+ *     parameters:
+ *       - name: idEvent
+ *         in: path
+ *         description: ID do evento a ser inscrito
+ *         required: true
+ *         schema:
+ *           type: integer
+ *       - name: idUser
+ *         in: path
+ *         description: ID do usuário a ser inscrito
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Inscrição realizada com sucesso
+ *       400:
+ *         description: Dados inválidos ou parâmetros incorretos
+ *       401:
+ *         description: Não autorizado
+ *       403:
+ *         description: Acesso proibido
+ *       404:
+ *         description: Evento não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
+router.post('/:idEvent/user/:idUser', EventsController.subscribeEvent)
+
+/**
+ * @openapi
+ * /events/{idEvent}/user/${idUser}:
+ *   delete:
+ *     summary: Exclui uma incrição pelo ID do evento e ID do user
+ *     tags:
+ *       - Events
+ *     parameters:
+ *       - name: idEvent
+ *         in: path
+ *         description: ID do evento a ser desinscrito
+ *         required: true
+ *         schema:
+ *           type: integer
+ *       - name: idUser
+ *         in: path
+ *         description: ID do usuário a ser desinscrito
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Inscrição cancelada com sucesso
+ *       404:
+ *         description: Evento não encontrado
+ *       500:
+ *         description: Erro ao cancelar inscrição
+ */
+router.delete('/:idEvent/user/:idUser', EventsController.unsubscribeEvent)
+
 module.exports = router

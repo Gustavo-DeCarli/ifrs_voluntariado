@@ -26,6 +26,27 @@ class EventModel {
     )
     return results
   }
+
+  static async subscribeEvent(idEvento, isUser) {
+    const [results] = await db.query(
+      'INSERT INTO subsevents (id, idEvent, idUser) VALUES (NULL, ?, ?)',
+      [idEvento, isUser],
+    )
+    return results
+  }
+
+  static async unsubscribeEvent(idEvento, isUser) {
+    const [results] = await db.query(
+      'DELETE FROM subsevents WHERE idEvent = ? AND idUser = ?',
+      [idEvento, isUser],
+    )
+    return results
+  }
+
+  static async getSubscribes() {
+    const [results] = await db.query('SELECT * FROM subsevents')
+    return results
+  }
 }
 
 module.exports = EventModel
