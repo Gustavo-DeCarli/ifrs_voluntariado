@@ -37,3 +37,54 @@ npm run dev
 cd frontend
 npm install
 npm run dev
+
+---
+
+## Rotas
+
+### Backend
+
+```bash
+Auth
+POST	/login	Realiza o login do usuário
+
+Events
+GET	/events	Retorna a lista de eventos públicos
+POST	/events	Cria um novo evento
+PUT	/events/{id}	Atualiza os detalhes de um evento
+DELETE	/events/{id}	Exclui um evento pelo ID
+GET	/events/subscribes	Lista de inscrições em eventos
+POST	/events/{idEvent}/user/{idUser}	Inscreve um usuário em um evento
+DELETE	/events/{idEvent}/user/{idUser}	Remove inscrição de um usuário
+
+Admin
+GET	/admin	Retorna dados do usuário admin
+
+Users
+GET	/users	Retorna lista de usuários
+POST	/users	Cria um novo usuário
+PUT	/users/{id}	Atualiza um usuário existente
+DELETE	/users/{id}	Exclui um usuário pelo ID
+
+### Frontend
+
+```Páginas Públicas
+
+/events – Lista de eventos
+
+
+Páginas Protegidas (Requer Login)
+
+/dashboard – Painel do usuário
+
+/Admin – Painel administrativo (admin)
+
+/IncluirEvento – Criar evento (admin)
+
+/EditarEvento/:id – Editar evento (admin)
+
+/Users – Lista de usuários (admin)
+
+/IncluirUser – Criar usuário (admin)
+
+/EditarUser/:id – Editar usuário (admin)
