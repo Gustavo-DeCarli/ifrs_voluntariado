@@ -76,6 +76,8 @@ class UserService {
    */
   static async updateUser(id, email, password, role) {
     try {
+      const hashed = await bcrypt.hash(password, 10);
+      password = hashed;
       const result = await UserModel.updateUser(id, email, password, role)
 
       if (result.affectedRows === 0) {
