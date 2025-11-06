@@ -125,12 +125,12 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
 
 ## Testes
 
- **Execute os testes unitários e de integração**
+ 1. **Execute os testes unitários e de integração**:
     ```bash
     npm test
     ```
 
- **Execute o teste com Selenium do login**
+2.  **Execute o teste com Selenium do login**:
     ```bash
     node tests/login.test.js
     ```
