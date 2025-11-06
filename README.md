@@ -57,6 +57,7 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 | **JWT** | Geração e validação de tokens para autenticação. |
 | **Swagger** | Documentação interativa da API (OpenAPI). |
 | **Nodemon** | Monitora alterações no código e reinicia o servidor. |
+| **Prisma (ORM)** | ORM moderno para Node.js que facilita o acesso e manipulação de bancos de dados. |
 
 ### **Frontend**
 
@@ -67,6 +68,15 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 | **React Router** | Biblioteca para gerenciamento de rotas (navegação). |
 | **Axios** | Cliente HTTP para comunicação com a API do backend. |
 | **ESLint & Prettier**| Ferramentas para garantir a padronização e formatação do código. |
+
+### **Testes e monitoramento**
+
+| Tecnologia | Descrição |
+| :--- | :--- |
+| **Jest** | Framework de testes em JavaScript. |
+| **Supertest** | Biblioteca para testar requisições HTTP em APIs. |
+| **Selenium** | Ferramenta para automação de testes em navegadores. |
+| **Winston** | Biblioteca flexível para registro e gerenciamento de logs. |
 
 ---
 
@@ -111,6 +121,20 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
         npm run dev
         ```
 
+---
+
+## Testes
+
+ **Execute os testes unitários e de integração**
+    ```bash
+    npm test
+    ```
+
+ **Execute o teste com Selenium do login**
+    ```bash
+    node tests/login.test.js
+    ```
+    
 ---
 
 ## API Endpoints
