@@ -1,4 +1,4 @@
-# IFRS Voluntariado  volontariado-ifrs-react-node
+# IFRS Voluntariado  voluntariado-ifrs-react-node
 
 ![Licença](https://img.shields.io/badge/licença-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow.svg)
