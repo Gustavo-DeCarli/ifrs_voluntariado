@@ -63,7 +63,7 @@ class UserService {
       form.password,
       form.role,
     )
-    if (result.affectedRows == 0) {
+    if (result.id == null) {
       throw new Error('Erro ao adicionar usuário!')
     }
 
@@ -84,7 +84,7 @@ class UserService {
       password = hashed
       const result = await UserModel.updateUser(id, email, password, role)
 
-      if (result.affectedRows === 0) {
+      if (result.id == null) {
         throw new Error('Usuário não encontrado')
       }
 
@@ -105,7 +105,7 @@ class UserService {
     try {
       const result = await UserModel.deleteUsers(id)
 
-      if (result.affectedRows === 0) {
+      if (result.count == 0) {
         throw new Error('Usuário não encontrado')
       }
 

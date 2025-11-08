@@ -1,36 +1,42 @@
-const db = require('../config/database')
+const prisma = require("../.././prismaClient");
 
 class UserModel {
   static async findByEmail(email) {
-    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [
-      email,
-    ])
-    return rows[0]
+    const rows = await prisma.users.findUnique({
+      where: { email: email }
+    });
+
+    return rows
   }
 
   static async listagem() {
-    const [rows] = await db.query('SELECT * FROM users')
+    const rows = await prisma.users.findMany();
     return rows
   }
 
   static async createUser(email, password, role) {
-    const [results] = await db.query(
-      `INSERT INTO users VALUES (NULL, ?, ?, ?, NULL)`,
-      [email, password, role],
-    )
+    const results = await prisma.users.create({
+      data: {
+        email: email,
+        password: password,
+        role: role
+      }
+    });
     return results
   }
 
   static async updateUser(id, email, password, role) {
-    const [results] = await db.query(
-      'UPDATE users SET email = ?, password = ?, role = ? WHERE id = ?',
-      [email, password, role, id],
-    )
+    const results = await prisma.users.update({
+      where: { id: parseInt(id) }, 
+      data: { email: email, password: password, role: role }
+    });
     return results
   }
 
   static async deleteUsers(id) {
-    const [results] = await db.query('DELETE FROM users WHERE id = ?', [id])
+    const results = await prisma.users.delete({
+      where: { id: parseInt(id) }
+    });
     return results
   }
 }

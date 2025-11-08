@@ -107,11 +107,19 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
 
 3.  **Configuração do Frontend:**
     ```bash
-    cd ../frontend
     npm install
+
+4.  **Configuração do banco:**
+    ```bash
+    npx prisma migrate dev --name init
     ```
 
-4.  **Executando a Aplicação:**
+5.  **Rodar seeds:**
+    ```bash
+    npx prisma db seed
+    ```
+
+6.  **Executando a Aplicação:**
     -   Para iniciar o servidor backend (na pasta `backend`):
         ```bash
         npm run dev
@@ -119,6 +127,18 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
     -   Para iniciar o cliente frontend (na pasta `frontend`):
         ```bash
         npm run dev
+        ```
+
+7.  **Logins da aplicação:**
+    -   Login user comum:
+        ```bash
+        User: usuario@ifrs.edu.br
+        Password: 123456
+        ```
+    -   Login user admin:
+        ```bash
+        User: admin@ifrs.edu.br
+        Password: admin123
         ```
 
 ---

@@ -1,50 +1,57 @@
-const db = require('../config/database')
+const prisma = require("../.././prismaClient");
+
 
 class EventModel {
+
   static async listagem() {
-    const [rows] = await db.query('SELECT * FROM events')
+    const rows = await prisma.events.findMany();
     return rows
   }
 
   static async createEvent(evento, data) {
-    const [results] = await db.query(`INSERT INTO events VALUES (NULL, ?, ?)`, [
-      evento,
-      data,
-    ])
+    const results = await prisma.events.create({
+      data: {
+        nome: evento,
+        data: new Date(data + 'T00:00:00')
+      }
+    });
     return results
   }
 
   static async deleteEvents(id) {
-    const [results] = await db.query('DELETE FROM events WHERE id = ?', [id])
+    const results = await prisma.events.delete({
+      where: { id: parseInt(id) }
+    });
     return results
   }
 
   static async updateEvent(id, evento, data) {
-    const [results] = await db.query(
-      'UPDATE events SET nome = ?, data = ? WHERE id = ?',
-      [evento, data, id],
-    )
+    const results = await prisma.events.update({
+      where: { id: parseInt(id) }, 
+      data: { nome: evento, data: new Date(data + 'T00:00:00') }
+    });
     return results
   }
 
-  static async subscribeEvent(idEvento, isUser) {
-    const [results] = await db.query(
-      'INSERT INTO subsevents (id, idEvent, idUser) VALUES (NULL, ?, ?)',
-      [idEvento, isUser],
-    )
+  static async subscribeEvent(idEvento, idUser) {
+    const results = await prisma.subsevents.create({
+      data: {
+        idEvent: parseInt(idEvento),
+        idUser: parseInt(idUser)
+      }
+    });
     return results
   }
 
-  static async unsubscribeEvent(idEvento, isUser) {
-    const [results] = await db.query(
-      'DELETE FROM subsevents WHERE idEvent = ? AND idUser = ?',
-      [idEvento, isUser],
-    )
+  static async unsubscribeEvent(idEvento, idUser) {
+    const results = await prisma.subsevents.deleteMany({
+      where: { idEvent: parseInt(idEvento), idUser: parseInt(idUser) }
+    });
     return results
   }
 
   static async getSubscribes() {
-    const [results] = await db.query('SELECT * FROM subsevents')
+    const results = await prisma.subsevents.findMany();
     return results
   }
 }

@@ -39,7 +39,7 @@ class EventsService {
     }
 
     const result = await EventModel.createEvent(form.evento, form.data)
-    if (result.affectedRows == 0) {
+    if (result.id == null) {
       throw new Error('Erro ao adicionar evento!')
     }
 
@@ -56,7 +56,7 @@ class EventsService {
     try {
       const result = await EventModel.deleteEvents(id)
 
-      if (result.affectedRows === 0) {
+      if (result.id == null) {
         throw new Error('Evento não encontrado')
       }
 
@@ -79,7 +79,7 @@ class EventsService {
     try {
       const result = await EventModel.updateEvent(id, evento, data)
 
-      if (result.affectedRows === 0) {
+      if (result.id == null) {
         throw new Error('Evento não encontrado')
       }
 
@@ -115,7 +115,7 @@ class EventsService {
     try {
       const result = await EventModel.subscribeEvent(idEvent, idUser)
 
-      if (result.affectedRows === 0) {
+      if (result.id == null) {
         throw new Error('Evento não encontrado')
       }
 
@@ -137,7 +137,7 @@ class EventsService {
     try {
       const result = await EventModel.unsubscribeEvent(idEvent, idUser)
 
-      if (result.affectedRows === 0) {
+      if (result.count === 0) {
         throw new Error('Evento não encontrado')
       }
 
