@@ -4,11 +4,16 @@ const authRoutes = require('./routes/auth.routes')
 const eventsRoutes = require('./routes/events.routes')
 const usersRoutes = require('./routes/users.routes')
 const protectedRoutes = require('./routes/protected.routes')
+const { requestLogger } = require("./middlewares/requestLogger")
+const { errorHandler } = require("./middlewares/errorHandler")
+const { logger } = require("./logger")
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(requestLogger)
 app.use('/auth', authRoutes)
 app.use('/events', eventsRoutes)
 app.use('/users', usersRoutes)
 app.use('/protected', protectedRoutes)
-module.exports = app
+app.use(errorHandler);
+module.exports = {app, logger}
